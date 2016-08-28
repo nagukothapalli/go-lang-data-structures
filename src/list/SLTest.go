@@ -52,11 +52,11 @@ func printList(list *SingleLinkedList) {
 	if list.isEmpty() {
 		fmt.Println(" No elements to print")
 	} else {
-		listCraler := list.head
-		for listCraler != nil {
+		listCrawler := list.head
+		for listCrawler != nil {
 			// Asuming All the Elemens are in list are strings
-			fmt.Printf("Element: %s \n", listCraler.element)
-			listCraler = listCraler.next
+			fmt.Printf("Element: %s \n", listCrawler.element)
+			listCrawler = listCrawler.next
 		}
 	}
 }
