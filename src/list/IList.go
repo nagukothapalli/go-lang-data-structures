@@ -7,6 +7,4 @@ type IList interface {
 	IsEmpty() bool
 	RemoveFirst() error
 	PrintList()
-	//GetHeadElement() interface{}
-	//GetTailElement() interface{}
 }
