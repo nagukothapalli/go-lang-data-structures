@@ -1,6 +1,9 @@
 package main
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 type SingleLinkedList struct {
 	head *SingleLinkedListNode
@@ -10,7 +13,7 @@ type SingleLinkedList struct {
 
 //Implementaions
 // Get the new Lit
-func getNewList() *SingleLinkedList {
+func GetNewList() *SingleLinkedList {
 	return &SingleLinkedList{head: nil, tail: nil, size: 0}
 }
 
@@ -21,15 +24,15 @@ func (list *SingleLinkedList) Size() int {
 
 // check wether List is empty or not
 
-func (list *SingleLinkedList) isEmpty() bool {
+func (list *SingleLinkedList) IsEmpty() bool {
 	return (list.head == nil && list.tail == nil)
 }
 
 // add the  new element as a first node
 
-func (list *SingleLinkedList) addFirst(node *SingleLinkedListNode) {
-
-	if list.isEmpty() {
+func (list *SingleLinkedList) AddFirst(element interface{}) {
+	node := InitNode(element)
+	if list.IsEmpty() {
 		list.head = node
 		list.tail = node
 
@@ -42,9 +45,9 @@ func (list *SingleLinkedList) addFirst(node *SingleLinkedListNode) {
 }
 
 // add the new element as a last node
-func (list *SingleLinkedList) addLast(node *SingleLinkedListNode) {
-
-	if list.isEmpty() {
+func (list *SingleLinkedList) AddLast(element interface{}) {
+	node := InitNode(element)
+	if list.IsEmpty() {
 		list.head = node
 		list.tail = node
 
@@ -59,24 +62,41 @@ func (list *SingleLinkedList) addLast(node *SingleLinkedListNode) {
 
 // remove the first  element
 
-func (list *SingleLinkedList) removeFirst() error {
+func (list *SingleLinkedList) RemoveFirst() error {
 
-	if list.isEmpty() {
+	if list.IsEmpty() {
 		return errors.New("No elements in list to delete!!")
 	}
 	futurHead := list.head.next
 	list.head = nil // this bacaues for flag as  garbage
 	list.head = futurHead
-	decrementSize(list)
+	DecrementSize(list)
 	return nil
 
 }
+func (list *SingleLinkedList) PrintList() {
 
-func decrementSize(list *SingleLinkedList) {
+	if list.IsEmpty() {
+		fmt.Println(" No elements to print")
+	} else {
+		listCrawler := list.head
+		for listCrawler != nil {
+			// Asuming All the Elemens are in list are strings
+			fmt.Printf("Element: %s \n", listCrawler.element)
+			listCrawler = listCrawler.next
+		}
+	}
+}
+
+// Some utils functions
+func InitNode(element interface{}) *SingleLinkedListNode {
+	return &SingleLinkedListNode{element: element, next: nil}
+}
+
+func DecrementSize(list *SingleLinkedList) {
 	list.size--
 	if list.size == 0 {
 		list.head = nil
 		list.tail = nil
 	}
-
 }

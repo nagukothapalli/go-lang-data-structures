@@ -4,59 +4,39 @@ import (
 	"fmt"
 )
 
-//  --  Main
+//Main
 func main() {
 
-	intr := `########################
-     ## Single Linked List ##
-     
-     ######################### `
+	intr := " ## Single Linked List ## \n"
 
 	fmt.Println(intr)
 	// get The new Single List
-	list := getNewList()
-
-	//	list.addFirst(&SingleLinkedListNode{element: "Nagu", next: nil})
-	list.addLast(&SingleLinkedListNode{element: "Kothapalli", next: nil})
-	list.addFirst(&SingleLinkedListNode{element: "Nagu", next: nil})
-	list.addFirst(&SingleLinkedListNode{element: "Lives in Pune", next: nil})
-	list.addLast(&SingleLinkedListNode{element: "Works at card", next: nil})
-
-	// add First
-	printList(list)
+	list := IList(GetNewList())
+	// Adding elememts
+	list.AddLast("Kothapalli")
+	list.AddFirst("Nagu")
+	list.AddFirst("Lives in Pune")
+	list.AddLast("Works at card") // add First
+	list.PrintList()
 	// Print the Size
 	fmt.Printf("Linked List Size : %d \n", list.Size())
 	//	list.removeFirst()
 	// Print the Size
 	fmt.Printf("Linked List Size : %d \n", list.Size())
 	// Print the Size
-	fmt.Printf(" Truth Valeu: %t \n", list.isEmpty())
+	fmt.Printf(" Truth Valeu: %t \n", list.IsEmpty())
 
-	fmt.Println("\n\n\n")
+	fmt.Println()
 	// After Removel of Some thing
-	list.removeFirst()
+	list.RemoveFirst()
 
-	printList(list)
+	list.PrintList()
 	// Print the Size
 	fmt.Printf("Linked List Size : %d \n", list.Size())
 	//	list.removeFirst()
 	// Print the Size
 	fmt.Printf("Linked List Size : %d \n", list.Size())
 	// Print the Size
-	fmt.Printf(" Truth Valeu: %t \n", list.isEmpty())
+	fmt.Printf(" Truth Valeu: %t \n", list.IsEmpty())
 
-}
-
-func printList(list *SingleLinkedList) {
-
-	if list.isEmpty() {
-		fmt.Println(" No elements to print")
-	} else {
-		listCrawler := list.head
-		for listCrawler != nil {
-			// Asuming All the Elemens are in list are strings
-			fmt.Printf("Element: %s \n", listCrawler.element)
-			listCrawler = listCrawler.next
-		}
-	}
 }
