@@ -1,10 +1,10 @@
-package main
+package stack
 
 import "errors"
 
 //Defining the Array  based stack
 type ArrayStack struct {
-	nodes    []*Node
+	nodes    []*interface{}
 	top      int
 	capacity int
 }
@@ -12,14 +12,13 @@ type ArrayStack struct {
 // Defining the  possible  errors may occur .
 
 var (
-	_underflowEror = errors.New("Stack UnderFlow Error")
-	_overflowEror  = errors.New("Stack overFlow Error")
+	_underflowEror = errors.New("Stack UnderFlow Error !!")
+	_overflowEror  = errors.New("Stack overFlow Error !!")
 )
 
 // Define the Stack operations
 func GetnewOne(capacity int) *ArrayStack {
-
-	newStack := ArrayStack{nodes: make([]*Node, capacity), capacity: capacity, top: -1}
+	newStack := ArrayStack{nodes: make([]*interface{}, capacity), capacity: capacity, top: -1}
 	return &newStack
 }
 
@@ -29,7 +28,7 @@ func (stack *ArrayStack) IsEmpty() bool {
 }
 
 // Push the  elements into stack
-func (stack *ArrayStack) Push(node *Node) error {
+func (stack *ArrayStack) Push(element interface{}) error {
 
 	dummyTop := stack.top
 	dummyTop = dummyTop + 1
@@ -38,19 +37,19 @@ func (stack *ArrayStack) Push(node *Node) error {
 		return _overflowEror
 	}
 	stack.top = dummyTop
-	stack.nodes[stack.top] = node
+	stack.nodes[stack.top] = &element
 	return nil
 }
 
 // POP the elements from stack
 
-func (stack *ArrayStack) Pop() (*Node, error) {
+func (stack *ArrayStack) Pop() (interface{}, error) {
 	if stack.IsEmpty() {
 		return nil, _underflowEror
 	}
 	topNode := stack.nodes[stack.top]
 	stack.top--
-	return topNode, nil
+	return *topNode, nil
 
 }
 
@@ -63,11 +62,10 @@ func (stack *ArrayStack) Size() int {
 }
 
 // Implemeting the peek Method
-func (stack *ArrayStack) Peek() (*Node, error) {
+func (stack *ArrayStack) Peek() (interface{}, error) {
 	if stack.IsEmpty() {
 		return nil, _underflowEror
 	}
 	topNode := stack.nodes[stack.top]
-	return topNode, nil
-
+	return *topNode, nil
 }
