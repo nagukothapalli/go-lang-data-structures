@@ -17,7 +17,7 @@ var (
 )
 
 // Define the Stack operations
-func GetnewOne(capacity int) *ArrayStack {
+func GetnewStack(capacity int) *ArrayStack {
 	newStack := ArrayStack{nodes: make([]*interface{}, capacity), capacity: capacity, top: -1}
 	return &newStack
 }

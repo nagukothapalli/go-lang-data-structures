@@ -5,7 +5,6 @@ type IStack interface {
 	Push(element interface{}) error
 	Pop() (interface{}, error)
 	IsEmpty() bool
-	Size() uint
+	Size() int
 	Peek() (interface{}, error)
-	Getnew(capacity uint) *IStack
 }

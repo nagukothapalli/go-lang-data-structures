@@ -9,7 +9,7 @@ func main() {
 
 	// get the  Integer Stack
 
-	arrayStack := stack.GetnewOne(5)
+	arrayStack := stack.IStack(stack.GetnewStack(5))
 	// Testing Size
 	fmt.Printf("Stack Size %d : \n ", arrayStack.Size())
 	// using of POP opeerations
@@ -35,7 +35,7 @@ func main() {
 
 	// get the  Integer Stack
 
-	stringStack := stack.GetnewOne(5)
+	stringStack := stack.IStack(stack.GetnewStack(5)) // checking againest the interface
 	// Testing Size
 	fmt.Printf("Stack Size %d : \n ", stringStack.Size())
 	// using of POP opeerations
